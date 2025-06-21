@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViridIoTech - Conectando Sustentabilidade e Tecnologia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d8659;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2d8659;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 120px; /* ← Adicionar padding-top para compensar o header fixo */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('hero-image.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0; /* ← Adicionar padding vertical */
+        }
+
+        /* Restaurar CSS para o logo do hero com tamanho original */
+        .hero-logo {
+            height: 120px; /* ← Voltar ao tamanho original */
+            width: auto;
+            margin-bottom: 2rem; /* ← Voltar à margem original */
+            filter: brightness(0) invert(1); 
+            transition: all 0.3s ease;
+            max-width: 100%; /* ← Garantir que não ultrapasse a largura */
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;  /* ← Reduzido de 3.5rem para 2.8rem */
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Added for better contrast */
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #2d8659, #4CAF50);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 134, 89, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 134, 89, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d8659;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin: 0 auto 4rem auto; /* ← Consolida todas as propriedades margin */
+            max-width: 600px;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #f8f9fa;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            color: #2d8659;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Solutions Section */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .solution-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .agriculture-bg {
+            background-image: url('agriculture-icon.jpg');
+        }
+
+        .recycling-bg {
+            background-image: url('recycling-icon.jpg');
+        }
+
+        .solution-content {
+            padding: 2rem;
+        }
+
+        .solution-card h3 {
+            color: #2d8659;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* How it Works Section */
+        .how-it-works {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        /* Enhanced contrast for text on .how-it-works gradient background */
+        .how-it-works .section-title,
+        .how-it-works .section-subtitle,
+        .how-it-works .step h3,
+        .how-it-works .step p {
+            color: white !important;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+        }
+
+        .steps-grid {
+            display: grid;
+            /* Ensure grid items are focusable if they become interactive */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.25); /* Darker overlay for better text contrast */
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #2d8659;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #2d8659 0%, #4CAF50 100%);
+            color: white;
+            text-align: center;
+        }
+
+        /* Enhanced contrast for text on .final-cta gradient background */
+        .final-cta .section-title,
+        .final-cta .section-subtitle {
+            color: white; /* ← Garantir cor branca */
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8); /* Increased shadow for better contrast */
+        }
+
+        .cta-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #2d8659;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 100px; /* ← Menos padding em mobile */
+            }
+
+            .hero-content {
+                padding: 1rem 0; /* ← Menos padding em mobile */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-logo {
+                height: 120px; /* ← Tamanho adequado para mobile */
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                /* TODO: Implement a hamburger menu for mobile navigation for accessibility and UX */
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-form {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#inicio" class="logo" style="text-decoration: none;">
+                <img src="img/VirioTech_logo_BgTransp.png" alt="ViridIoTech">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#solucoes">Soluções</a></li>
+                <li><a href="#como-funciona">Como Funciona</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <img src="img/VirioTech_logo_BgTransp.png" alt="ViridIoTech" class="hero-logo">
+                <h1>Conectando Sustentabilidade e Tecnologia</h1>
+                <p>Desenvolvemos soluções IoT inteligentes para otimizar o uso de recursos, da lavoura à coleta seletiva.</p>
+                <a href="#contato" class="cta-button">Seja o Primeiro a Saber</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">Recursos são Preciosos. O Desperdício Não é uma Opção.</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>No Campo</h3>
+                    <p>O manejo ineficiente de recursos como água e insumos leva a custos elevados e desperdício significativo. Agricultores precisam de dados precisos para tomar decisões inteligentes sobre irrigação, fertilização e manejo de cultivos.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Na Cidade</h3>
+                    <p>A ineficiência da coleta de recicláveis resulta em caminhões rodando desnecessariamente e contêineres transbordando. Isso gera poluição, custos extras e impacto negativo no meio ambiente urbano.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solucoes" class="solutions">
+        <div class="container">
+            <h2 class="section-title">Nossas Inovações em Ação</h2>
+            <p class="section-subtitle">Transformamos desafios ambientais em oportunidades através da tecnologia IoT</p>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-image agriculture-bg"></div>
+                    <div class="solution-content">
+                        <h3>Agricultura de Precisão Inteligente</h3>
+                        <p>Nossa plataforma IoT para o agronegócio utiliza sensores para monitorar as condições do cultivo em tempo real. O sistema processa esses dados para gerar insights, automatizar a irrigação e otimizar o uso de recursos, aumentando a produtividade e a sustentabilidade.</p>
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-image recycling-bg"></div>
+                    <div class="solution-content">
+                        <h3>Gestão de Resíduos Otimizada</h3>
+                        <p>Nosso sensor de ultrassom, para ser instalado em contêineres de coleta, mede o nível de preenchimento e avisa as cooperativas automaticamente quando a coleta é necessária. O resultado é a otimização de rotas, economia de combustível e uma cidade mais limpa e eficiente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <p class="section-subtitle">Tecnologia simples, resultados poderosos</p>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Monitorar</h3>
+                    <p>Sensores inteligentes coletam dados essenciais em tempo real (umidade do solo, nível do contêiner, etc.)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Conectar</h3>
+                    <p>As informações são transmitidas de forma segura via IoT para nossa plataforma central na nuvem</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Analisar e Agir</h3>
+                    <p>Nosso sistema analisa os dados e envia alertas e comandos inteligentes, seja para um agricultor ou para uma central de logística</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <h2 class="section-title">Nascemos para Unir Propósito e Inovação</h2>
+            <div class="about-content">
+                <p>A ViridIoTech é uma startup em fase de incubação com uma missão clara: desenvolver tecnologia para um mundo mais sustentável. Acreditamos que a Internet das Coisas (IoT) é a chave para resolver desafios complexos de gestão de recursos.</p>
+                <br>
+                <p>Estamos começando com a agricultura e a reciclagem, mas nossa visão é muito maior. Estamos construindo um futuro onde a eficiência e a responsabilidade andam juntas, criando soluções que beneficiam tanto o meio ambiente quanto a economia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contato" class="final-cta">
+        <div class="container">
+            <h2 class="section-title">Junte-se a Nós na Construção de um Futuro Sustentável</h2>
+            <p class="section-subtitle">Estamos desenvolvendo nosso MVP e procurando por parceiros e entusiastas para serem os primeiros a testar nossas soluções. Se você é um agricultor, gestor de cooperativa ou simplesmente um apaixonado por tecnologia verde, deixe seu contato.</p>
+            
+            <form class="cta-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="interesse">Área de Interesse</label>
+                    <select id="interesse" name="interesse">
+                        <option value="">Selecione uma opção</option>
+                        <option value="agricultura">Agricultura</option>
+                        <option value="gestao-residuos">Gestão de Resíduos</option>
+                        <option value="ambos">Ambos</option>
+                        <option value="investimento">Investimento</option>
+                        <option value="parceria">Parceria Tecnológica</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Participar da Nossa Jornada</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ViridIoTech. Todos os direitos reservados. Conectando sustentabilidade e tecnologia para um futuro melhor.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handler
+        const ctaForm = document.querySelector('.cta-form');
+        ctaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxF-GZueDfhQNC6hi5dgTCDMEnz1jbw0e82y_4pUjZQ192zYm6oTn-nnMZ7cnvgRP9w/exec'; // <-- SUBSTITUA PELA URL DO SEU SCRIPT
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('.submit-btn');
+            const originalButtonText = submitButton.textContent;
+
+            submitButton.textContent = 'Enviando...';
+            submitButton.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === "success") {
+                        alert('Obrigado pelo seu interesse! Seus dados foram enviados com sucesso.');
+                        form.reset(); // Limpa o formulário
+                    } else {
+                        console.error('Erro retornado pelo script:', data.message);
+                        alert('Ocorreu um erro ao enviar seus dados. Por favor, tente novamente. Detalhes: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar o formulário:', error);
+                    alert('Ocorreu um erro de comunicação ao enviar seus dados. Verifique sua conexão e tente novamente.');
+                })
+                .finally(() => {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
